@@ -1,0 +1,9 @@
+.container
+  h1 Create a product!
+  = simple_form_for @product, url: admin_category_products_path, method: :post do |f|
+    = f.input :name
+    = f.input :description
+    = f.input :feature
+    = f.input :price
+    = f.input :stock
+    = f.button :submit, 'Create!'

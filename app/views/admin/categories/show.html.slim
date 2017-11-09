@@ -1,0 +1,6 @@
+.container
+  h1 = @category.name.capitalize
+  h2 Products
+  ul
+    - @products.each do |product|
+      li = product.name

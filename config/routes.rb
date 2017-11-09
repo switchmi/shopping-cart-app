@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   namespace :admin do
     root to: 'categories#new'
-    resources :categories, only: [:new, :create, :destroy]
+    resources :categories, param: :name, only: [:new, :create, :show, :destroy] do
+      resources :products do
+        resources :photos
+      end
+    end
   end
+  resources :categories, param: :identifier, only: [:index, :show]
 end
