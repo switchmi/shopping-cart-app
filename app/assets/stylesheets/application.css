@@ -15,7 +15,7 @@
  */
 
 div {
-  border: 1px dotted red;
+  /*border: 1px dotted red;*/
 }
 
 .logo {
@@ -32,26 +32,29 @@ div {
   height: 200px;
   margin-bottom: 10px;
 }
+.category-header p {
+  font-style: italic;
+}
+
 .product-body {
   display: flex;
   /*justify-content: center;*/
-  border: 1px dotted blue;
   flex-wrap: wrap;
 
 }
 
 .product-box{
-  border: 1px dotted black;
+  border: 1px solid black;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 300px;
 }
 
-.product-image {
+.image-box {
   width: auto;
   height: 300px;
-  border: 1px dotted black;
+  /*border: 1px solid black;*/
 }
 
 .nav-item {

@@ -12,4 +12,5 @@ Rails.application.routes.draw do
     end
   end
   resources :categories, param: :name, only: [:index, :show]
+  resources :products, only: [:show]
 end

@@ -1,0 +1,24 @@
+.container
+  h1 = @product.name.capitalize
+  hr
+  h2 Description
+  p = @product.description
+  hr
+  h2 Features
+  p = @product.feature
+  hr
+  h2 Price
+  p = @product.price
+  hr
+  h2 Stock
+  p = @product.stock
+  hr
+  h2 Photos
+  = link_to 'New Photo', new_admin_category_product_photo_path(@category.name, @product.id)
+  h3 Add new photo
+  = form_for @photo, url: admin_category_product_photos_path(@category.name, @product.id), method: :post do |f|
+    = f.filestack_field :url, 'Upload a photo', pickerOptions: {'fromSources': 'url'}
+    = f.button :submit
+  ul
+    - @photos.each do |photo|
+      li = image_tag photo.url

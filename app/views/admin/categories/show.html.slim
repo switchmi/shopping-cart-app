@@ -5,4 +5,6 @@
   ul
     - @products.each do |product|
       li = product.name
+      = link_to 'Show', admin_category_product_path(@category.name, product.id)
+      | &nbsp;
       = link_to 'Delete', admin_category_product_path(@category.name, product.id), method: :delete

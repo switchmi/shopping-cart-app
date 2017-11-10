@@ -22,6 +22,14 @@ class Admin::ProductsController < AdminController
 
   end
 
+  def show
+    @category = Category.find_by(name: params[:category_name])
+    @product = @category.products.find(params[:id])
+    @photos = @product.photos.all
+    @photo = @photos.new
+
+  end
+
   private
 
   def get_params
