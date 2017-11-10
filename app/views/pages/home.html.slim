@@ -1,2 +1,16 @@
-h1 BroBagz by Danjonmi!
+-if current_admin
+  ul.navbar-nav
+    li.nav-item = link_to 'Add New Category', admin_root_path
+    li.nav-item = link_to 'Add New Backpack', new_admin_category_product_path('backpacks')
+    li.nav-item = link_to 'Add New Messenger', new_admin_category_product_path('messengers')
 .container-fluid
+  .category-header
+    h1.display-3 BroBagz by danjonmi
+    p.lead = "Keeping the bro-pride alive since 2001"
+.container-fluid
+  .product-body
+    - @products.each do |product|
+      .product-box.col-4
+        .product-image
+        h2 = product.name
+        h3 = product.price
