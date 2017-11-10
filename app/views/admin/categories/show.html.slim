@@ -1,6 +1,8 @@
 .container
   h1 = @category.name.capitalize
   h2 Products
+  = link_to 'New Product', new_admin_category_product_path(@category.name)
   ul
     - @products.each do |product|
       li = product.name
+      = link_to 'Delete', admin_category_product_path(@category.name, product.id), method: :delete

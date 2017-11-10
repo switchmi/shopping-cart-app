@@ -11,5 +11,5 @@ Rails.application.routes.draw do
       end
     end
   end
-  resources :categories, param: :identifier, only: [:index, :show]
+  resources :categories, param: :name, only: [:index, :show]
 end

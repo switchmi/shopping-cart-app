@@ -8,10 +8,18 @@ class Admin::ProductsController < AdminController
     @category = Category.find_by(name: params[:category_name])
     @product = @category.products.new(get_params)
     if @product.save
-      redirect_to admin_category_path(@category)
+      redirect_to admin_category_path(@category.name)
     else
       render :new
     end
+  end
+
+  def destroy
+    @category = Category.find_by(name: params[:category_name])
+    @product = @category.products.find(params[:id])
+    @product.destroy
+    redirect_to admin_category_path(@category.name)
+
   end
 
   private
