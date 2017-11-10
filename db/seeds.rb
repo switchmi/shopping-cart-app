@@ -1,7 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+Category.create("name"=>"backpacks", "description"=>"Our stylish, innovative, and durable laptop backpacks and computer bags hold devices up to 17 inches and offer ergonomic fit for the urban commuter.")
+Category.create("name"=>"messengers", "description"=>"Built by and for bike couriers and commuters, our durable messenger bags include cross-body straps and foldover flaps for comfort and convenience.")
+Category.create("name"=>"travel-bags", "description"=>"Crafted with our trademark mix of durability and style, BroBagz travel bags and accessories are designed for globetrotters and day-trippers alike.")
