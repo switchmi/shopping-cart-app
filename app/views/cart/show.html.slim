@@ -1,0 +1,14 @@
+h1 Cart Contents
+table
+  thead
+    th Name
+    th Price
+    th Quantity
+
+  tbody
+  - @products.each do |product|
+    tr
+      td = product.name
+      td = product.price
+      td = $redis.hget "cart#{current_user.id}", product.id
+      td = link_to "Remove", cart_remove_from_path(current_user.id, product.id), method: :put
