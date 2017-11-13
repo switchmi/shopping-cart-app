@@ -1,0 +1,19 @@
+- if @products
+  - if @products.size > 0
+      div
+        - @products.each do |product|
+          h1 = product.name.capitalize
+          hr
+          h2 Description
+          p = product.description
+          hr
+          h2 Features
+          p = product.feature
+          hr
+          h2 Price
+          p = product.price
+          hr
+          h2 Stock
+          p = product.stock
+  - else
+    div No such products

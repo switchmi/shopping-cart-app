@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   end
   resources :categories, param: :name, only: [:index, :show]
   resources :products, only: [:show]
+  get 'search_products', to: "products#search"
 end
