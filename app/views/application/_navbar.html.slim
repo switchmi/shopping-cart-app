@@ -13,7 +13,7 @@ nav.navbar.navbar-toggleable-md.navbar-light.bg-faded
         li.nav-item.ml-auto = link_to 'Admin Sign In', new_admin_session_path
 
       - if current_user
-        li.nav-item.ml-auto = link_to 'My Cart('+ current_user.cart_count.to_s+')', cart_path(current_user.id)
+        li.nav-item.ml-auto id="cart_count" = render partial: 'cart_count'
         li.nav-item.ml-auto = link_to 'Sign Out', destroy_user_session_path, method: :delete
       -else
         li.nav-item.ml-auto = link_to 'User Sign In', new_user_session_path
