@@ -1,19 +1,13 @@
-- if @products
-  - if @products.size > 0
-      div
+.container-fluid
+  .product-body
+    - if @products
+      - if @products.size > 0
         - @products.each do |product|
-          h1 = product.name.capitalize
-          hr
-          h2 Description
-          p = product.description
-          hr
-          h2 Features
-          p = product.feature
-          hr
-          h2 Price
-          p = product.price
-          hr
-          h2 Stock
-          p = product.stock
-  - else
-    div No such products
+          .product-box.col-4
+            .image-box
+            h1 = product.name.capitalize
+            hr
+            h2 Price
+            h3 =product.price
+      - else
+        div No such products
