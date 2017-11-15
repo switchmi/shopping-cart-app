@@ -1,5 +1,6 @@
 .container
   h1 = @product.name.capitalize
+  = link_to "Add to Cart", cart_add_to_path(current_user.id, @product.id), method: :put if current_user
   hr
   h2 Description
   p = @product.description
