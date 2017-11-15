@@ -16,4 +16,10 @@ class User < ApplicationRecord
     end
   end
 
+  after_create :send_mail
+  def send_mail
+    UserMailer.welcome_email(self).deliver
+  end
+  private
+
 end
