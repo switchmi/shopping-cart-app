@@ -16,4 +16,4 @@
           .product-image
             = filestack_image product.photos.first.url, transform: filestack_transform.resize(width:300, height:300) if product.photos.first
         h2 = link_to product.name, product_path(product.id)
-        h3 = product.price
+        h3 = "$#{product.price}"
