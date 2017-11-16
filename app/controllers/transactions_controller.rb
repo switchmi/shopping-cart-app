@@ -14,6 +14,7 @@ class TransactionsController < ApplicationController
               payment_method_nonce: params[:payment_method_nonce])
     if @result.success?
       current_user.purchase_cart_products!
+      UserMailer.order_complete(current_user).deliver_later
       redirect_to root_path, notice: "Congratulations! Your transaction is successful!"
     else
       flash[:alert] = @result.errors

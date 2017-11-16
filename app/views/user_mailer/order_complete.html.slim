@@ -1,0 +1,17 @@
+h1 = "Hi #{@user.email}!"
+h2 Here are your order details :
+table
+  thead
+    th #
+    th Item
+    th Price
+  tbody
+    - index = 0
+    - @orders.each do |order|
+      tr
+        - index += 1
+        th = index
+        td = order.name
+        td = order.price
+hr
+h1 Our products are made through blood, sweat and tears. You will definitely enjoy our finest quality!
