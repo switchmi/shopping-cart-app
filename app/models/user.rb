@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
 
+  has_many :orders
+  has_many :products, through: :orders
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
@@ -16,15 +19,49 @@ class User < ApplicationRecord
     end
   end
 
+  def cart_total_price
+    total_price = 0
+    get_cart_products.each { |product| total_price+= product.price }
+    total_price
+  end
+
+  def get_cart_products
+    cart_ids = $redis.hkeys current_user_cart
+    Product.find(cart_ids)
+  end
+
+  def purchase_cart_products!
+    get_cart_products.each do |product|
+      quantity = $redis.hget current_user_cart, product.id
+      purchase(product, quantity)
+    end
+    $redis.del "cart#{id}"
+  end
+
+  def purchase(product, quantity)
+    quantity.to_i.times do
+      products << product 
+    end
+  end
+
+  def purchase?(product)
+    products.include?(product)
+  end
+
 
   after_create :send_mail
   def send_mail
     UserMailer.welcome_email(self).deliver
   end
-  private
 
   def cart_count
     $redis.hlen "cart#{id}"
+  end
+
+  private
+
+  def current_user_cart
+    "cart#{id}"
   end
 
 end

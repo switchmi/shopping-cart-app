@@ -26,3 +26,4 @@ table.table
     td colspan=5
     td Total
     td = "$#{sum}"
+=link_to "Checkout", new_transaction_path, class: "button" unless current_user.get_cart_products.blank?

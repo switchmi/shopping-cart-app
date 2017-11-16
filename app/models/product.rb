@@ -6,6 +6,9 @@ class Product < ApplicationRecord
   validates :price, presence: true
   validates :stock, presence: true
 
+  has_many :orders
+  has_many :users, through: :orders
+  
   def self.search(param)
     return Product.none? if param.blank?
 
