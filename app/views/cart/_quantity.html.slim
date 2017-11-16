@@ -1,0 +1,28 @@
+table.table
+  thead
+    th #
+    th Name
+    th Price
+    th Quantity
+    th Add
+    th Remove
+    th Subtotal
+  tbody
+  - index = 0
+  - sum = 0
+  - @products.each do |product|
+    tr
+      - if $redis.hget "cart#{current_user.id}", product.id
+        - index += 1
+        th = index
+        td = product.name
+        td = product.price
+        td = $redis.hget "cart#{current_user.id}", product.id
+        td = link_to "+1", cart_add_to_path(current_user.id, product.id), method: :put, remote: true
+        td = link_to "-1", cart_remove_from_path(current_user.id, product.id), method: :put, remote: true
+        td = "$#{(product.price * ($redis.hget "cart#{current_user.id}", product.id).to_i)}"
+        - sum += product.price * ($redis.hget "cart#{current_user.id}", product.id).to_i
+  tr.totals
+    td colspan=5
+    td Total
+    td = "$#{sum}"

@@ -17,8 +17,20 @@
 div {
   /*border: 1px dotted red;*/
 }
+.notification {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+nav {
+  background-color: #FFFFFF;
+  border: 1px solid black;
+  font-family: 'Varela Round', sans-serif;
+}
 
 .logo {
+  border: 1px solid black;
   width: 200px;
 }
 
@@ -61,4 +73,13 @@ div {
   margin-left: 10px;
   margin-right: 10px;
 
+}
+
+#add-product {
+  margin-bottom: 10px;
+}
+
+#admin-links {
+  margin-top: 5px;
+  border: 1px dotted red;
 }

@@ -1,13 +1,9 @@
-= render 'products/search_bar'
-
 -if current_admin
   ul.navbar-nav
     / li.nav-item = link_to 'Show Category', admin_category_path(@category.name)
     li.nav-item = link_to 'Add New Category', admin_root_path
     li.nav-item = link_to 'Add New Backpack', new_admin_category_product_path('backpacks')
     li.nav-item = link_to 'Add New Messenger', new_admin_category_product_path('messengers')
-
-= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path
 .container-fluid
   .category-header
     h1.display-3 BroBagz by danjonmi

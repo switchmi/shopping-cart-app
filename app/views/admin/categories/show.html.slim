@@ -1,10 +1,15 @@
-.container
-  h1 = @category.name.capitalize
-  h2 Products
-  = link_to 'New Product', new_admin_category_product_path(@category.name)
-  ul
+.container-fluid
+  .category-header
+    h1.display-3 = @category.name.capitalize
+    p.lead = @category.description
+.container-fluid
+  = link_to 'Add Product', new_admin_category_product_path(@category.name), class: "btn btn-success", id: "add-product"
+  .product-body
     - @products.each do |product|
-      li = product.name
-      = link_to 'Show', admin_category_product_path(@category.name, product.id)
-      | &nbsp;
-      = link_to 'Delete', admin_category_product_path(@category.name, product.id), method: :delete
+      .product-box.col-4
+        .image-box
+          .product-image
+            = filestack_image product.photos.first.url, transform: filestack_transform.resize(width:300, height:300) if product.photos.first
+        h2 = link_to product.name, admin_category_product_path(@category.name, product.id)
+        h3 = "$#{product.price}"
+        = link_to 'Delete', admin_category_product_path(@category.name, product.id), method: :delete, class: "btn btn-warning"
