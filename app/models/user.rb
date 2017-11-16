@@ -21,7 +21,6 @@ class User < ApplicationRecord
   def send_mail
     UserMailer.welcome_email(self).deliver
   end
-  private
 
   def cart_count
     $redis.hlen "cart#{id}"
