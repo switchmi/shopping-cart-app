@@ -16,6 +16,13 @@ class User < ApplicationRecord
     end
   end
 
+
+  after_create :send_mail
+  def send_mail
+    UserMailer.welcome_email(self).deliver
+  end
+  private
+
   def cart_count
     $redis.hlen "cart#{id}"
   end
