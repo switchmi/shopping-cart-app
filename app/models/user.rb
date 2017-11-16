@@ -21,7 +21,10 @@ class User < ApplicationRecord
 
   def cart_total_price
     total_price = 0
-    get_cart_products.each { |product| total_price+= product.price }
+    get_cart_products.each do |product|
+      subtotal = product.price * ($redis.hget "cart#{id}",product.id).to_i
+      total_price += subtotal
+    end
     total_price
   end
 
@@ -39,9 +42,12 @@ class User < ApplicationRecord
   end
 
   def purchase(product, quantity)
+    stock = product.stock
     quantity.to_i.times do
-      products << product 
+      products << product
+      stock -= 1
     end
+    product.update(stock: stock)
   end
 
   def purchase?(product)

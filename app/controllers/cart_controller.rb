@@ -29,7 +29,7 @@ class CartController < ApplicationController
       end
     end
     respond_to do |format|
-      format.html {redirect_to product_path(params[:product_id])}
+      format.html {redirect_to product_path(params[:product_id]), alert: "Awesome! Item has been successfully added to cart!"}
       format.js
     end
   end

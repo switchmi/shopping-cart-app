@@ -1,6 +1,6 @@
 .container
   h1 = @product.name.capitalize
-  = link_to "Add to Cart", add_to_path(@product.id), method: :put
+  = link_to "Add to Cart", add_to_path(@product.id), method: :put unless @product.stock == 0
   hr
   h2 Description
   p = @product.description
@@ -12,7 +12,13 @@
   p = "$#{@product.price}"
   hr
   h2 Stock
-  p = @product.stock
+  - if @product.stock < 4 && @product.stock > 0
+    span.badge.badge-warning Low stock
+    p = @product.stock
+  - elsif @product.stock == 0
+    span.badge.badge-danger Out of stock
+  - else
+    p = @product.stock
   hr
   h2 Photos
   ul
