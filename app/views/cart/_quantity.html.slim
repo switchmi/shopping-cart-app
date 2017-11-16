@@ -1,4 +1,4 @@
-table.table
+table.table.table-striped
   thead
     th #
     th Name
@@ -37,11 +37,12 @@ table.table
           td = "$#{subtotal}"
           - sum += subtotal
 
-  tr.totals
+  tr.thead-default id="totals"
     td colspan=5
-    td Total
-    td = "$#{sum}"
-- if current_user
-  =link_to "Checkout", new_transaction_path, class: "button" unless current_user.get_cart_products.blank?
-- else
-  =link_to "Checkout", new_transaction_path, class: "button" unless session["cart"].keys.blank?
+    th Total
+    th = "$#{sum}"
+.container.d-flex
+  - if current_user
+    =link_to "Checkout", new_transaction_path, class: "btn btn-primary btn-lg ml-auto" unless current_user.get_cart_products.blank?
+  - else
+    =link_to "Checkout", new_transaction_path, class: "btn btn-primary btn-lg ml-auto" unless session["cart"].keys.blank?

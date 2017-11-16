@@ -1,5 +1,6 @@
 class TransactionsController < ApplicationController
   before_action :authenticate_user!
+  before_action :add_session_cart!
   before_action :check_cart!
 
   def new
@@ -7,6 +8,7 @@ class TransactionsController < ApplicationController
   end
 
   def create
+
     @result = Braintree::Transaction.sale(
               amount: current_user.cart_total_price,
               payment_method_nonce: params[:payment_method_nonce])
@@ -30,5 +32,27 @@ class TransactionsController < ApplicationController
     if current_user.get_cart_products.blank?
       redirect_to cart_path(current_user.id), alert: "Please add some items to your cart before processing your transaction!"
     end
+  end
+
+  def add_session_cart!
+    cart_ids = session["cart"].keys
+    cart_ids.each do |cart_id|
+      quantity = session["cart"][cart_id]
+      if $redis.hexists current_user_cart, cart_id
+        quantity.times do
+          $redis.hincrby current_user_cart, cart_id, 1
+        end
+      else
+        $redis.hset current_user_cart, cart_id, 1
+        (quantity-1).times do
+          $redis.hincrby current_user_cart, cart_id, 1
+        end
+      end
+    end
+    session[:cart] = {}
+  end
+
+  def current_user_cart
+    "cart#{current_user.id}"
   end
 end
