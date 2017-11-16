@@ -1,6 +1,6 @@
 .container
   h1 = @product.name.capitalize
-  = link_to "Add to Cart", cart_add_to_path(current_user.id, @product.id), method: :put if current_user
+  = link_to "Add to Cart", add_to_path(@product.id), method: :put
   hr
   h2 Description
   p = @product.description
@@ -9,7 +9,7 @@
   p = @product.feature
   hr
   h2 Price
-  p = @product.price
+  p = "$#{@product.price}"
   hr
   h2 Stock
   p = @product.stock
@@ -17,4 +17,4 @@
   h2 Photos
   ul
     - @photos.each do |photo|
-      li = image_tag photo.url
+      = filestack_image photo.url, transform: filestack_transform.resize(width:500, height:500)

@@ -20,9 +20,9 @@ Rails.application.routes.draw do
   resources :categories, param: :name, only: [:index, :show]
   resources :products, only: [:show]
   get 'search_products', to: "products#search"
-  resources :cart, only: [:show] do
-    put 'add/:product_id', to: 'cart#add', as: :add_to
-    put 'remove/:product_id', to: 'cart#remove', as: :remove_from
-  end
+  get 'cart', to: 'cart#show'
+  put 'cart/add/:product_id', to: 'cart#add', as: :add_to
+  put 'cart/remove/:product_id', to: 'cart#remove', as: :remove_from
+
   resources :transactions, only: [:new, :create]
 end

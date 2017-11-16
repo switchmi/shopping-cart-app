@@ -1,1 +1,6 @@
-= link_to 'My Cart('+ current_user.cart_count.to_s+')', cart_path(current_user.id)
+- if current_user
+  = link_to 'My Cart('+ current_user.cart_count.to_s+')', cart_path
+- else
+  - unless session['cart']
+    - session["cart"] = {}
+  = link_to 'My Cart(' + session["cart"].keys.length.to_s + ')', cart_path
