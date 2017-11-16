@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'transactions/new'
+
+  get 'transactions/create'
+
   get 'carts/show'
 
   devise_for :admins
@@ -20,4 +24,5 @@ Rails.application.routes.draw do
     put 'add/:product_id', to: 'cart#add', as: :add_to
     put 'remove/:product_id', to: 'cart#remove', as: :remove_from
   end
+  resources :transactions, only: [:new, :create]
 end

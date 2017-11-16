@@ -39,8 +39,8 @@ class User < ApplicationRecord
   end
 
   def purchase(product, quantity)
-    quantity.times do
-      products << product unless purchase?(product)
+    quantity.to_i.times do
+      products << product 
     end
   end
 
