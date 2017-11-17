@@ -25,12 +25,13 @@ div {
 
 nav {
   background-color: #FFFFFF;
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   font-family: 'Varela Round', sans-serif;
 }
 
 .logo {
-  border: 1px solid black;
+  /*border: 1px solid black;*/
+  border-style: outset;
   width: 200px;
 }
 
@@ -82,4 +83,15 @@ nav {
 #admin-links {
   margin-top: 5px;
   border: 1px dotted red;
+}
+
+.photos-container {
+  margin: 10px;
+  border-style: groove;
+}
+
+.photo-body {
+  /*border: 1px solid black;*/
+  border-radius: 25px;
+  margin: 5px;
 }
