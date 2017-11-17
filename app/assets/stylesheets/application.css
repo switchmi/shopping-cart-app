@@ -95,3 +95,8 @@ nav {
   border-radius: 25px;
   margin: 5px;
 }
+
+.admin-bar {
+  font-family: 'Inconsolata', monospace;
+  font-weight: bolder;
+}
