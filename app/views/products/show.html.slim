@@ -1,9 +1,9 @@
+.container-fluid
+  .category-header
+    h1.display-3 = @product.name.capitalize
+    p.lead = @product.description
 .container
-  h1 = @product.name.capitalize
-  = link_to "Add to Cart", add_to_path(@product.id), method: :put unless @product.stock == 0
-  hr
-  h2 Description
-  p = @product.description
+  = link_to "Add to Cart", add_to_path(@product.id), method: :put, class: "btn btn-primary" unless @product.stock == 0
   hr
   h2 Features
   p = @product.feature
@@ -21,6 +21,6 @@
     p = @product.stock
   hr
   h2 Photos
-  ul
+  ul.photos-container
     - @photos.each do |photo|
-      = filestack_image photo.url, transform: filestack_transform.resize(width:500, height:500)
+      .col-6 = filestack_image photo.url, transform: filestack_transform.resize(width:500, height:500), class: "photo-body"
