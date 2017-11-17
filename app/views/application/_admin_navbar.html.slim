@@ -20,6 +20,7 @@ nav.navbar.navbar-toggleable-md.navbar-light
         li.nav-item.ml-auto.p-2 id="cart_count" = render partial: 'cart_count'
     = render 'products/search_bar'
     ul.navbar-nav.d-flex.justify-content-start id = "admin-links"
+      li.nav-item.p-2.admin-bar Admin mode
       li.nav-item.p-2 = link_to 'BACKPACKS', admin_category_path("backpacks"), class: "btn btn-outline-info"
       li.nav-item.p-2 = link_to 'MESSENGERS', admin_category_path("messengers"), class: "btn btn-outline-info"
       li.nav-item.p-2 = link_to 'TRAVEL BAGS', admin_category_path("travel-bags"), class: "btn btn-outline-info"
