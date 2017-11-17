@@ -1,13 +1,17 @@
 .container-fluid
+  .category-header
+    h1.display-3 Search Results
+    - if @products.empty?
+      p.lead Ooops, no such item matches our inventory.
+    - else
+      p.lead = (@products.length == 1)? "#{@products.length} item found!" : "#{@products.length} items found!"
+.container-fluid
   .product-body
     - if @products
-      - if @products.size > 0
-        - @products.each do |product|
-          .product-box.col-4
-            .image-box
-            h1 = product.name.capitalize
-            hr
-            h2 Price
-            h3 =product.price
-      - else
-        div No such products
+      - @products.each do |product|
+        .product-box.col-4
+          .image-box
+            .product-image
+              = filestack_image product.photos.first.url, transform: filestack_transform.resize(width:300, height:300) if product.photos.first
+          h2 = link_to product.name, product_path(product.id)
+          h3 = "$#{product.price}"
